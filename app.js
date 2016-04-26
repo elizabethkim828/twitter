@@ -1,28 +1,29 @@
-"does this work?"
-
-
 var express = require('express');
 var app = express();
-var morgan = require('morgan');
+var swig = require('swig');
 
-app.use('/', function (request, response, next) {
-  console.log(request.method + 1234);
-  console.log(request.url);
-  next();
-});
+var locals = {
+	title: 'An Example',
+    people: [
+        { name: 'Gandalf'},
+        { name: 'Frodo' },
+        { name: 'Hermione'}
+    ]
+}
 
-app.use(morgan('combined'));
+swig.renderFile(__dirname + '/views/index.html');
 
-app.get('/', function (request, response, next) {
-  response.send('Hello World!');
-});
+//middleware
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
 
-app.get('/news', function (request, response, next) {
-  response.send('Hello News!');
-});
-
-app.post('/modernism', function (request, response, next) {
-  response.send('Hello News!');
+//process template
+app.get('/', function (req, res) {
+  	res.render( 'index', {
+  		title: locals.title,
+  		people: locals.people
+  	});
 });
 
 app.listen(3000, function () {
