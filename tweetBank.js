@@ -1,8 +1,10 @@
 var _ = require('lodash');
 var data = [];
+var count = 0;
 
 function add (name, text) {
-  data.push({ name: name, text: text });
+  data.unshift({ name: name, text: text, id: count });
+  count++;
 }
 
 function list () {
@@ -31,7 +33,7 @@ var getFakeTweet = function() {
 };
 
 for (var i = 0; i < 10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
+  module.exports.add( getFakeName(), getFakeTweet(), count );
 }
 add('Matt', 'Landers');
 console.log(find( {text: '#fullstacklove'} ));
