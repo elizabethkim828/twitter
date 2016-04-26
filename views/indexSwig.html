@@ -1,0 +1,11 @@
+<h1>{{ header }}</h1>
+
+{% for sh in subheaders %}
+<p>{{ sh.subheader }}</p>
+{% endfor %}
+
+<ul>
+{% for person in people %}
+  <li>{{ person.name }}</li>
+{% endfor %}
+</ul>
