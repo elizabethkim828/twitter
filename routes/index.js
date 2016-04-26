@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
 router.get( '/users/:name', function (req, res) {
   var name = req.params.name;
   var tweets = tweetBank.find( { name: name } );
-  res.render( 'index', { title: 'Twitter.js '+name, tweets: tweets } );
+  res.render( 'index', { title: 'Twitter.js '+name, tweets: tweets, showFormName: true } );
 });
 
 router.get( '/tweets/:id', function (req, res) {

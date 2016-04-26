@@ -3,7 +3,7 @@ var data = [];
 var count = 0;
 
 function add (name, text) {
-  data.unshift({ name: name, text: text, id: count });
+  data.push({ name: name, text: text, id: count });
   count++;
 }
 
