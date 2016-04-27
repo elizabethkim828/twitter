@@ -1,5 +1,7 @@
 var router = require('express').Router();
 var tweetBank = require('../tweetBank');
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 
 module.exports = function (io) {
   router.get('/', function (req, res) {
